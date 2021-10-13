@@ -10,54 +10,54 @@ describe("index.js", function () {
     rimraf.sync("test/dist");
   });
 
-  it("should generate icon files", function (done) {
-    this.timeout(10000);
+  // it("should generate icon files", function (done) {
+  //   this.timeout(10000);
 
-    const paths = [
-      "icons/mac/icon.icns",
-      "icons/win/icon.ico",
-      "icons/png/16x16.png",
-      "icons/png/24x24.png",
-      "icons/png/32x32.png",
-      "icons/png/48x48.png",
-      "icons/png/64x64.png",
-      "icons/png/128x128.png",
-      "icons/png/256x256.png",
-      "icons/png/512x512.png",
-      "icons/png/1024x1024.png",
-    ];
+  //   const paths = [
+  //     "icons/mac/icon.icns",
+  //     "icons/win/icon.ico",
+  //     "icons/png/16x16.png",
+  //     "icons/png/24x24.png",
+  //     "icons/png/32x32.png",
+  //     "icons/png/48x48.png",
+  //     "icons/png/64x64.png",
+  //     "icons/png/128x128.png",
+  //     "icons/png/256x256.png",
+  //     "icons/png/512x512.png",
+  //     "icons/png/1024x1024.png",
+  //   ];
 
-    const child = child_process.fork(
-      "./index.js",
-      ["--input", "test/test.png", "--output", "test/dist"],
-      { silent: true }
-    );
+  //   const child = child_process.fork(
+  //     "./index.js",
+  //     ["--input", "test/test.png", "--output", "test/dist"],
+  //     { silent: true }
+  //   );
 
-    child.on("exit", (code) => {
-      assert.equal(code, 0, "Exit code");
-      for (const path of paths) {
-        assert.ok(fs.existsSync("./test/dist/" + path), path);
-      }
+  //   child.on("exit", (code) => {
+  //     assert.equal(code, 0, "Exit code");
+  //     for (const path of paths) {
+  //       assert.ok(fs.existsSync("./test/dist/" + path), path);
+  //     }
 
-      done();
-    });
-  });
+  //     done();
+  //   });
+  // });
 
   it("should generate icon files with flatten option", function (done) {
-    this.timeout(10000);
+    this.timeout(160000);
 
     const paths = [
-      "icons/icon.icns",
-      "icons/icon.ico",
-      "icons/16x16.png",
-      "icons/24x24.png",
-      "icons/32x32.png",
-      "icons/48x48.png",
-      "icons/64x64.png",
-      "icons/128x128.png",
-      "icons/256x256.png",
-      "icons/512x512.png",
-      "icons/1024x1024.png",
+      "icon.icns",
+      "icon.ico",
+      "16x16.png",
+      "24x24.png",
+      "32x32.png",
+      "48x48.png",
+      "64x64.png",
+      "128x128.png",
+      "256x256.png",
+      "512x512.png",
+      "1024x1024.png",
     ];
 
     const child = child_process.fork(
