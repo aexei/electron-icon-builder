@@ -33,9 +33,6 @@
   },
   "dependencies": {
     "args": "^5.0.1",
-    "atob": "^2.1.2",
-    "btoa": "^1.2.1",
-    "changedpi": "^1.0.4",
     "icon-gen": "^2.0.0",
     "jimp": "^0.16.1"
   },

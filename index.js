@@ -6,10 +6,6 @@ const path = require("path");
 const fs = require("fs");
 const icongen = require("icon-gen");
 
-global.atob = require("atob");
-global.btoa = require("btoa");
-const changeDPI = require("changedpi");
-
 var pngSizes = [16, 24, 32, 48, 64, 128, 256, 512, 1024];
 
 args
@@ -36,8 +32,7 @@ createPNGs(0).catch((err) => {
 // calls itself recursivly
 async function createPNGs(position) {
   const info = await createPNG(pngSizes[position]);
-  await changeDpi(info);
-  console.log("Created " + info);
+  console.log(info);
 
   if (position < pngSizes.length - 1) {
     // keep going
@@ -90,19 +85,10 @@ async function createPNG(size) {
   }
 
   const image = await Jimp.read(input);
-  image.resize(size, size, Jimp.RESIZE_NEAREST_NEIGHBOR);
+  image.resize(size, size);
   await image.writeAsync(path.join(PNGoutputDir, fileName));
 
-  return path.join(PNGoutputDir, fileName);
-}
-
-async function changeDpi(imagePath) {
-  const image = await Jimp.read(imagePath);
-  const b64 = await image.getBase64Async(Jimp.AUTO);
-  const b64_highdpi = changeDPI.changeDpiDataUrl(b64, 144);
-  const base64Image = b64_highdpi.split(";base64,").pop();
-  const buffer = Buffer.from(base64Image, "base64");
-  fs.writeFileSync(imagePath, buffer);
+  return "Created " + path.join(PNGoutputDir, fileName);
 }
 
 function ensureDirExists(dir) {
